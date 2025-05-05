@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<?php
+
+// Meses
+$meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"];
+
+$maximas = [30.4, 29.0, 26.8, 23.4, 19.3, 16.6, 16.0, 17.7, 19.6, 23.1, 26.1, 28.5];
+
+$minimas = [20.2, 19.5, 18.0, 13.6, 10.5, 8.3, 7.7, 8.7, 10.6, 13.5, 16.0, 18.2];
+
+$suma_max = 0;
+$suma_min = 0;
+
+for ($i = 0; $i < 12; $i++) {
+    $suma_max += $maximas[$i];
+    $suma_min += $minimas[$i];
+}
+
+$prom_max = $suma_max / 12;
+$prom_min = $suma_min / 12;
+
+$max_temp = $maximas[0];
+$min_temp = $minimas[0];
+$mes_max = $meses[0];
+$mes_min = $meses[0];
+
+for ($i = 1; $i < 12; $i++) {
+    if ($maximas[$i] > $max_temp) {
+        $max_temp = $maximas[$i];
+        $mes_max = $meses[$i];
+    }
+    if ($minimas[$i] < $min_temp) {
+        $min_temp = $minimas[$i];
+        $mes_min = $meses[$i];
+    }
+}
+
+echo "<h2>Resultados Climáticos</h2>";
+
+echo "<p>Promedio de temperaturas máximas: <strong>" . number_format($prom_max, 1) . " °C</strong></p>";
+echo "<p> Promedio de temperaturas mínimas: <strong>" . number_format($prom_min, 1) . " °C</strong></p>";
+
+echo "<p> Temperatura más alta del año: <strong>" . number_format($max_temp, 1) . " °C</strong> en <strong>$mes_max</strong></p>";
+echo "<p> Temperatura más baja del año: <strong>" . number_format($min_temp, 1) . " °C</strong> en <strong>$mes_min</strong></p>";
+
+?>
+
+</body>
+</html>
